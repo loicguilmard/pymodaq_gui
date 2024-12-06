@@ -21,10 +21,14 @@ class CustomConfig(config_mod.BaseConfig):
     config_name = f"custom_settings"
 
 
+type_list = ['tc', 'volt']
+
 child_template = [
     {'title': 'Do it?:', 'name': 'do_it', 'type': 'bool', 'value': True},
-    {'title': 'Choose:', 'name': 'choice', 'type': 'list', 'value': 'ok',
-     'limits': ['ok', 'nonok']},
+    {'title': 'Type:', 'name': 'type', 'type': 'list', 'value': 'K', 'limits': ['', 'K', '23']},
+    {'title': 'Resolution:', 'name': 'resolution', 'type': 'int', 'value': 6},
+    {'title': 'transducer', 'name': 'choice', 'type': 'list', 'value': type_list[0],
+     'limits': type_list},
 ]
 
 
@@ -96,7 +100,7 @@ class ScalableCustomGroup(GroupParameter):
     def __init__(self, **opts):
         opts['type'] = 'mycustomgroupparameter'
         opts['addText'] = "Add"
-        opts['addList'] = [str(ind) for ind in range(10)]
+        opts['addList'] = type_list
         super().__init__(**opts)
 
     def addNew(self, typ):
