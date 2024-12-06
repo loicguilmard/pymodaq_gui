@@ -103,7 +103,7 @@ class ScalableCustomGroup(GroupParameter):
         opts['addList'] = type_list
         super().__init__(**opts)
 
-    def addNew(self, typ):
+    def addNew(self, optlist):
         """
             Add a child.
 
@@ -118,10 +118,13 @@ class ScalableCustomGroup(GroupParameter):
         dialog.exec_()
 
         children = []
-        for ind_child in range(int(typ)):
-            newindex += ind_child
-            children.append({'title': 'Template {:02.0f}'.format(newindex),
-                             'name': f'{name_prefix}{newindex:02.0f}',
+        for parameter in child_template:
+            if parameter['name'] == "choice":
+                parameter['value'] = optlist
+
+        for channel in dialog.channellist:
+            children.append({'title': f'{channel}',
+                             'name': f'{channel}',
                              'type': 'group',
                              'removable': True, 'children': child_template})
 
