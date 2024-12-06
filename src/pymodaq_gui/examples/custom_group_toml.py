@@ -114,12 +114,8 @@ class ScalableCustomGroup(GroupParameter):
         """
         name_prefix = 'template'
 
-        child_indexes = [int(par.name()[len(name_prefix) + 1:]) for par in self.children()[1:]]
-
-        if child_indexes == []:
-            newindex = 0
-        else:
-            newindex = max(child_indexes) + 1
+        dialog = CustomDialog()
+        dialog.exec_()
 
         children = []
         for ind_child in range(int(typ)):
