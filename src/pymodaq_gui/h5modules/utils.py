@@ -9,7 +9,7 @@ from collections import OrderedDict
 from typing import List, Dict
 from pathlib import Path
 from importlib import import_module
-from ..daq_utils import get_entrypoints
+from pymodaq_utils.utils import get_entrypoints
 
 # 3rd party imports
 import numpy as np
